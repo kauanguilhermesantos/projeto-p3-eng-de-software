@@ -8,6 +8,11 @@
 
 ## Controle de versão
 
+Verificando alterações do repositório remoto:
+```
+    git pull
+```
+
 Adicionando um arquivo específico ao stage:
 ```
     git add <nomeDoArquivo>
