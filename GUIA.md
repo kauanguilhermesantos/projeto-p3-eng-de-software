@@ -23,6 +23,11 @@ Resgistrando um commit com mensagem:
     git commit -m "mensagem do commit"
 ```
 
+Enviando commit para o repositório remoto:
+```
+    git push
+```
+
 ## Branches
 
 Listando branches criadas:
