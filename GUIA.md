@@ -55,6 +55,22 @@ Criando e mudando para a branch criada:
     git checkout -b <nomeDaBranch>
 ```
 
+Deletando uma branch local:
+```
+    git branch -d <nome-da-branch>
+```
+
+Forçando a deleção de uma branch:
+```
+    git branch -D <nome-da-branch>
+```
+
+## Merge
+Fazendo merge de uma branch na branch atual.
+```
+    git merge <nome-da-branch>
+```
+
 ## Repositório remoto
 
 Enviando a branch para o repositório remoto:
