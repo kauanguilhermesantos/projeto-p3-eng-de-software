@@ -27,16 +27,3 @@ CREATE TABLE IF NOT EXISTS reservations(
     FOREIGN KEY (bookId) REFERENCES books (id),
     FOREIGN KEY (userId) REFERENCES users (id)
 );
-
--- criar banco de dados para o TaskMaster
-CREATE DATABASE task_master;
-
-USE task_master;
--- criar tabela de tarefas
-CREATE TABLE IF NOT EXISTS tasks (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL
-);
-
