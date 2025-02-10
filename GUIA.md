@@ -54,6 +54,10 @@ Criando e mudando para a branch criada:
 ```
     git checkout -b <nomeDaBranch>
 ```
+Dando push na branch:
+```
+git push --set-upstream origin tudo-aqui
+```
 
 Deletando uma branch local:
 ```
