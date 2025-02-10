@@ -1,5 +1,6 @@
-import mysql.connector
 import questionary
+from database.connection import Database
+"""import mysql.connector
 
 MYSQL_HOST = "localhost"
 MYSQL_USER = "root"
@@ -15,7 +16,10 @@ connection = mysql.connector.connect(
     port=MYSQL_PORT
 )
 
-cursor = connection.cursor()
+cursor = connection.cursor()"""
+db = Database()
+connection = db.connection
+cursor = db.connect()
 
 while True:
     action = questionary.select(
@@ -144,8 +148,7 @@ while True:
 
     elif action == "Sair":
         print("Saindo...")
-        cursor.close()
-        connection.close()
+        db.close()
         break
 
     else:
