@@ -1,32 +1,18 @@
 import mysql.connector
 
-class Database:
-    def __init__(self):
-        self.MYSQL_HOST = "localhost"
-        self.MYSQL_USER = "root"
-        self.MYSQL_PASSWORD = "root123"
-        self.MYSQL_DB = "libra_tech"
-        self.MYSQL_PORT = 3307
-        self.connection = None
-        self.cursor = None
+MYSQL_HOST = "localhost"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "root123"
+MYSQL_DB = "libra_tech"
+MYSQL_PORT = 3307
 
-    def connect(self):
-        """Estabelece a conexão com o banco de dados."""
-        if self.connection is None:
-            self.connection = mysql.connector.connect(
-                host=self.MYSQL_HOST,
-                user=self.MYSQL_USER,
-                password=self.MYSQL_PASSWORD,
-                database=self.MYSQL_DB,
-                port=self.MYSQL_PORT
-            )
-            self.cursor = self.connection.cursor()
-        return self.cursor
-    
-    def close(self):
-        """Fecha a conexão com o banco de dados."""
-        if self.cursor:
-            self.cursor.close()
-        if self.connection:
-            self.connection.close()
-            self.connection = None
+# Criando a conexão uma única vez
+connection = mysql.connector.connect(
+    host=MYSQL_HOST,
+    user=MYSQL_USER,
+    password=MYSQL_PASSWORD,
+    database=MYSQL_DB,
+    port=MYSQL_PORT
+)
+
+cursor = connection.cursor()
