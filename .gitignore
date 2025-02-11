@@ -3,3 +3,6 @@
 
 # Ignorar todas as pastas venv
 **/venv/
+
+# Igonar o __pycache__
+**__pycache__/
