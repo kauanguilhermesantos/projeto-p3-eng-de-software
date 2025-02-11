@@ -1,5 +1,6 @@
 import questionary
-from database.connection import Database
+from database.connection import connection, cursor
+#from repositories.book_repository import register_book
 """import mysql.connector
 
 MYSQL_HOST = "localhost"
@@ -17,9 +18,6 @@ connection = mysql.connector.connect(
 )
 
 cursor = connection.cursor()"""
-db = Database()
-connection = db.connection
-cursor = db.connect()
 
 while True:
     action = questionary.select(
@@ -148,7 +146,8 @@ while True:
 
     elif action == "Sair":
         print("Saindo...")
-        db.close()
+        cursor.close()
+        connection.close()
         break
 
     else:
