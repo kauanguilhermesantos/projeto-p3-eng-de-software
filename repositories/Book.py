@@ -1,4 +1,9 @@
 import questionary
+from repositories.book_search_strategy import SearchByTitle, SearchByAuthor, SearchByCategory, return_books
+from database.Connection import Connection
+
+db = Connection()
+cursor = db.get_cursor()
 
 class Book:
     #função para registrar um livro
@@ -56,28 +61,22 @@ class Book:
                     'Buscar por Categoria'
                 ]
             ).ask()
+        
+        strategy = None
 
         if search_type == 'Buscar por Título':
             book_title = input("Digite o título do livro: ")
-            connect.cursor.execute('SELECT * FROM books WHERE name = %s', (book_title,))
-            books = connect.cursor.fetchall()
+            strategy = SearchByTitle()
+            books = strategy.search(cursor, book_title)
 
-            if len(books) == 0:
-                print("Livro não encontrado.")
-            else:
-                for book in books:
-                    print(book)
+            return_books(books)
 
         elif search_type == 'Buscar por Autor':
             author_name = input("Digite o nome do autor: ")
-            connect.cursor.execute('SELECT * FROM books WHERE author = %s', (author_name,))
-            books = connect.cursor.fetchall()
+            strategy = SearchByAuthor()
+            books = strategy.search(cursor, author_name)
 
-            if len(books) == 0:
-                print("Livro não encontrado.")
-            else:
-                for book in books:
-                    print(book)
+            return_books(books)
 
         elif search_type == 'Buscar por Categoria':
             category_choices = [
@@ -91,11 +90,7 @@ class Book:
                     "Escolha a categoria do livro:",
                     choices=category_choices
                 ).ask()
-            connect.cursor.execute('SELECT * FROM books WHERE category = %s', (category_name,))
-            books = connect.cursor.fetchall()
-
-            if len(books) == 0:
-                print("Livro não encontrado.")
-            else:
-                for book in books:
-                    print(book)
+            strategy = SearchByCategory()
+            books = strategy.search(cursor, category_name)
+            
+            return_books(books)
