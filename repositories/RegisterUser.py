@@ -1,5 +1,4 @@
-
-class User:
+class RegisterUser:
     def register_user(self, connect):
         user_name = input("Digite seu nome: ")
         user_email = input("Digite seu email: ")

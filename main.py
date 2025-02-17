@@ -1,11 +1,11 @@
 import questionary
 from database.Connection import Connection
-from repositories.Book import Book
-from repositories.User import User
+from models.Book import Book
+from models.User import User
 
-book = Book()
-user = User()
 connect = Connection()
+book = Book(connect)
+user = User(connect)
 
 while True:
     action = questionary.select(
@@ -20,16 +20,16 @@ while True:
     ).ask()
 
     if action == "Cadastrar livro":
-        book.register_book(connect)
+        book.register_book()
 
     elif action == "Cadastrar usuario":
-        user.register_user(connect)
+        user.register_user()
 
     elif action == "Fazer uma reserva":
-        book.reserve_book(connect)
+        book.reserve_book()
 
     elif action == "Buscar um livro":
-        book.search_book(connect)
+        book.search_book()
 
     elif action == "Sair":
         print("Saindo...")
