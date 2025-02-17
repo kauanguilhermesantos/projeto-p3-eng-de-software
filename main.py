@@ -30,16 +30,6 @@ while True:
             'Sair'
         ]
     ).ask()
-    action = questionary.select(
-        "O que você deseja fazer?",
-        choices=[
-            'Cadastrar livro',
-            'Cadastrar usuario',
-            'Fazer uma reserva',
-            'Buscar um livro',
-            'Sair'
-        ]
-    ).ask()
 
     if action == "Cadastrar livro":
         book.register_book()
