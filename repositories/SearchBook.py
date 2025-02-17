@@ -1,11 +1,8 @@
 import questionary
-from database.Connection import Connection
 from repositories.BookSearchStrategy import *
+from .Interfaces import ISearchBook
 
-db = Connection()
-cursor = db.get_cursor()
-
-class SearchBook:
+class SearchBook(ISearchBook):
     def search_book(self, connect):
         search_type = questionary.select(
                 "Como você gostaria de buscar o livro?",
@@ -21,7 +18,7 @@ class SearchBook:
         if search_type == 'Buscar por Título':
             book_title = input("Digite o título do livro: ")
             strategy = SearchByTitle()
-            books = strategy.search(cursor, book_title)
+            books = strategy.search(connect.cursor, book_title)
 
             if len(books) == 0:
                 print("Livro não encontrado.")
@@ -32,7 +29,7 @@ class SearchBook:
         elif search_type == 'Buscar por Autor':
             author_name = input("Digite o nome do autor: ")
             strategy = SearchByAuthor()
-            books = strategy.search(cursor, author_name)
+            books = strategy.search(connect.cursor, author_name)
 
             if len(books) == 0:
                 print("Livro não encontrado.")
@@ -53,7 +50,7 @@ class SearchBook:
                     choices=category_choices
                 ).ask()
             strategy = SearchByCategory()
-            books = strategy.search(cursor, category_name)
+            books = strategy.search(connect.cursor, category_name)
             
             if len(books) == 0:
                 print("Livro não encontrado.")
