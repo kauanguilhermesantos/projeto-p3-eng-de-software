@@ -34,11 +34,11 @@ while True:
     if action == "Cadastrar livro":
         book.register_book()
 
-    elif action == "Cadastrar usuario":
+    elif action == "Cadastrar usuário":
         user.register_user()
 
     elif action == "Fazer uma reserva":
-        book.reserve_book()
+        reserve.reserve_book()
 
     elif action == "Buscar um livro":
         book.search_book()
