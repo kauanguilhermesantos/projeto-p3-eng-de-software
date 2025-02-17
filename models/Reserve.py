@@ -1,15 +1,10 @@
-from database.Connection import Connection
-from repositories.ReserveBook import ReserveBook
-
-
-# db = Connection()
-# cursor = db.get_cursor()
+from repositories.Interfaces import IReserveBook
 
 class Reserve:
-    def __init__(self, connection):
+    def __init__(self, connection, reserve: IReserveBook):
         self.connection = connection
-        self.search = ReserveBook()
-    #função para buscar um livro
+        self.reserve = reserve 
+
     def reserve_book(self):
         self.reserve.reserve_book(self.connection)
 

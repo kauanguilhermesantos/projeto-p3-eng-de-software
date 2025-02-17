@@ -1,6 +1,7 @@
 import questionary
+from repositories.Interfaces import IRegisterBook
 
-class RegisterBook:
+class RegisterBook(IRegisterBook):
     def register_book(self, connect):
             book_name = input("Digite o nome do livro: ")
             category = questionary.select(

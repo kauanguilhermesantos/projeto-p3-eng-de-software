@@ -1,4 +1,6 @@
-class ReserveBook:
+from repositories.Interfaces import IReserveBook
+
+class ReserveBook(IReserveBook):
     def reserve_book(self, connect):
         user_name = input("Digite o nome do usuário: ")
         connect.cursor.execute('SELECT * FROM users WHERE name = %s', (user_name,))
@@ -6,6 +8,7 @@ class ReserveBook:
 
         if len(user_results) == 0:
             print('Erro: Usuário não encontrado.')
+            return
 
         book_title = input("Digite o título do livro: ")
         connect.cursor.execute('SELECT * FROM books WHERE name = %s', (book_title,))
@@ -13,6 +16,7 @@ class ReserveBook:
 
         if len(book_results) == 0:
             print('Erro: Livro não encontrado.')
+            return
 
         book_id = book_results[0][0]  
         user_id = user_results[0][0]  
