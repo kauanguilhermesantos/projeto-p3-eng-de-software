@@ -1,5 +1,5 @@
 import questionary
-from repositories.book_search_strategy import SearchByTitle, SearchByAuthor, SearchByCategory, return_books
+from repositories.BookSearchStrategy import *
 from database.Connection import Connection
 
 db = Connection()
@@ -69,14 +69,22 @@ class Book:
             strategy = SearchByTitle()
             books = strategy.search(cursor, book_title)
 
-            return_books(books)
+            if len(books) == 0:
+                print("Livro não encontrado.")
+            else:
+                for book in books:
+                    print(book)
 
         elif search_type == 'Buscar por Autor':
             author_name = input("Digite o nome do autor: ")
             strategy = SearchByAuthor()
             books = strategy.search(cursor, author_name)
 
-            return_books(books)
+            if len(books) == 0:
+                print("Livro não encontrado.")
+            else:
+                for book in books:
+                    print(book)
 
         elif search_type == 'Buscar por Categoria':
             category_choices = [
@@ -93,4 +101,8 @@ class Book:
             strategy = SearchByCategory()
             books = strategy.search(cursor, category_name)
             
-            return_books(books)
+            if len(books) == 0:
+                print("Livro não encontrado.")
+            else:
+                for book in books:
+                    print(book)

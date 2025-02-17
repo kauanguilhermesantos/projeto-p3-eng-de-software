@@ -5,10 +5,6 @@ class InterfaceSearchStrategy(ABC):
     def search(self, cursor, query):
         pass
 
-# class SearchStrategy:
-#     def search(self, cursor, query):
-#         raise NotImplementedError("Subclasses devem implementar o método search")
-
 class SearchByTitle(InterfaceSearchStrategy):
     def search(self, cursor, title):
         cursor.execute("SELECT * FROM books WHERE name = %s", (title,))
